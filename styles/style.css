@@ -13,8 +13,8 @@ body {
 
 .contents textarea {
     border: 2px solid gray;
-    width: 1343px;
-    height: 504px;
+    width: auto;
+    height: auto;
     background-color: #3f3f3f;
     outline: none;
     color: #dcdccc;
