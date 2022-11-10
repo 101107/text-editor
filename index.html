@@ -3,78 +3,7 @@
 <head>
 	<title>Untitled.txt - Text Editor</title>
 	<link rel="shortcut icon" type="image" href="img/icon.ico">
-	<style>
-	body {
-		background-color: #101010;
-		font-family: Arial;
-	}
-
-	.contents {
-		color: gray;
-	}
-
-	.contents span {
-		outline: none;
-	}
-
-	.contents textarea {
-		border: 2px solid gray;
-		width: 1343px;
-		height: 504px;
-		background-color: #3f3f3f;
-		outline: none;
-		color: #dcdccc;
-	}
-
-	.contents input {
-		background-color: gray;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-
-	#choose_text {
-		margin-left: 10px;
-		color: #aaa;
-	}
-
-	.copy {
-		position: relative;
-		display: inline-block;
-	}
-
-	.copy .copytext {
-		visibility: hidden;
-		width: 140px;
-		background-color: #555;
-		color: #fff;
-		text-align: center;
-		border-radius: 6px;
-		padding: 5px;
-		position: absolute;
-		z-index: 1;
-		bottom: 150%;
-		left: 50%;
-		margin-left: -75px;
-		opacity: 0;
-		transition: opacity 0.3s;
-	}
-
-	.copy .copytext::after {
-		content: "";
-		position: absolute;
-		top: 100%;
-		left: 50%;
-		margin-left: -5px;
-		border-width: 5px;
-		border-style: solid;
-		border-color: #555 transparent transparent transparent;
-	}
-
-	.copy:hover .copytext {
-		visibility: visible;
-		opacity: 1;
-	}
-	</style>
+	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 	<div class="contents">
