@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Untitled.txt - Text Editor</title>
+	<link rel="shortcut icon" type="image" href="img/icon.ico">
+	<style>
+	body {
+		background-color: #101010;
+		font-family: Arial;
+	}
+
+	.contents {
+		color: gray;
+	}
+
+	.contents span {
+		outline: none;
+	}
+
+	.contents textarea {
+		border: 2px solid gray;
+		width: 1343px;
+		height: 504px;
+		background-color: #3f3f3f;
+		outline: none;
+		color: #dcdccc;
+	}
+
+	.contents input {
+		background-color: gray;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	#choose_text {
+		margin-left: 10px;
+		color: #aaa;
+	}
+
+	.copy {
+		position: relative;
+		display: inline-block;
+	}
+
+	.copy .copytext {
+		visibility: hidden;
+		width: 140px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px;
+		position: absolute;
+		z-index: 1;
+		bottom: 150%;
+		left: 50%;
+		margin-left: -75px;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.copy .copytext::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #555 transparent transparent transparent;
+	}
+
+	.copy:hover .copytext {
+		visibility: visible;
+		opacity: 1;
+	}
+	</style>
+</head>
+<body>
+	<div class="contents">
+    	<h1>Text Editor</h1>
+	<input type="file" id="myFile" onchange="loadFileAsText()" hidden="hidden">
+	<input type="button" id="choose" value="Choose file"/>
+	<span id="choose_text" contenteditable="true">Untitled.txt</span><br/>
+	<textarea id="text"></textarea><br/>
+	<input type="button" id="download" value="Download Text" />
+	<div class="copy">
+		<input type="button" onclick="copy()" onmouseout="uncopy()" id="copy" value="Copy Text"/>
+		<span class="copytext" id="myCopy">Copy to clipboard</span>
+	</div>
+	<script>
+	const realFileBtn = document.getElementById("myFile");
+	const customBtn = document.getElementById("choose");
+	const customTxt = document.getElementById("choose_text");
+	// change title when the file name input is not focus
+	document.getElementById("choose_text").onblur = function() {title()};
+	// Choose file button
+	customBtn.addEventListener("click", function() {
+		realFileBtn.click();
+	});
+	// set text to file name
+	realFileBtn.addEventListener("change", function() {
+	if (realFileBtn.value) {
+		customTxt.innerHTML = realFileBtn.value.match(
+		/[\/\\]([\w\d\s\.\-\(\)]+)$/
+		)[1];
+		title();
+	}
+	});
+	// change title
+	function title() {
+		document.title = customTxt.innerHTML + " - " + "Text Editor";
+	}
+	// load file
+	function loadFileAsText(){
+	  var myFile = document.getElementById("myFile").files[0];
+	  var fileReader = new FileReader();
+	  fileReader.onload = function(fileLoadedEvent){
+		  var textFromFileLoaded = fileLoadedEvent.target.result;
+		  document.getElementById("text").value = textFromFileLoaded;
+	  };
+	  fileReader.readAsText(myFile, "UTF-8");
+	}
+	// download
+	function download(file, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href','data:text/plain;charset=utf-8,'+ encodeURIComponent(text));
+                element.setAttribute('download', file);
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+            document.getElementById("download")
+            .addEventListener("click", function() {
+                var text = document.getElementById("text").value;
+                var filename = customTxt.innerHTML;
+                download(filename, text);
+				title();
+            }, false);
+	// copy
+	function copy(){
+		let copyText = document.getElementById("text");
+    	copyText.select();
+    	document.execCommand("copy");
+    	let copy = document.getElementById("myCopy");
+    	copy.innerHTML = "Copied!";
+	}
+	// set the text to "Copy to clipboard" when cursor not hover on "Copy Text" button
+	function uncopy(){
+		let copy = document.getElementById("myCopy");
+		copy.innerHTML = "Copy to clipboard";
+	}
+	// allow user to enter tab
+	document.getElementById('text').addEventListener('keydown', function(e) {
+  		if (e.key == 'Tab') {
+    	e.preventDefault();
+    	var start = this.selectionStart;
+    	var end = this.selectionEnd;
+
+    	this.value = this.value.substring(0, start) +
+      	"\t" + this.value.substring(end);
+
+    	this.selectionStart =
+      	this.selectionEnd = start + 1;
+  		}
+	});
+	</script>
+	</div>
+</body>
+</html>
