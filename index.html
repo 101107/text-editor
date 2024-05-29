@@ -15,11 +15,11 @@
             <div id="lineNumbers" class="line-numbers"></div>
             <textarea id="text" class="editor" oninput="updateLineNumbers()" onscroll="syncScroll()"></textarea>
         </div>
-        <input type="button" id="download" value="Download Text" />
-        <div class="copy">
-            <input type="button" onclick="copy()" onmouseout="uncopy()" id="copy" value="Copy Text"/>
-            <span class="copytext" id="myCopy"></span>
-        </div>
+		<div class="buttons">
+			<input type="button" id="download" value="Download Text" />
+			<input type="button" onclick="copy()" onmouseout="uncopy()" id="copy" value="Copy Text"/>
+			<span class="copytext" id="myCopy"></span>
+		</div>
     </div>
     <script>
         const realFileBtn = document.getElementById("myFile");
