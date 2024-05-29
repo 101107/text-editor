@@ -1,35 +1,34 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #1d1e23;
 }
 
 .contents {
     max-width: 100%;
     margin: auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #24262c;
+	color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .contents span {
     outline: none;
+	color: white;
 }
 
-/* Text Editor styles */
 .editor-container {
     display: flex;
-    border: 1px solid #ddd;
-    background: #fff;
+    border: 1px solid gray;
     height: 400px;
 }
 
 .line-numbers {
     padding: 10px;
-    background: #f0f0f0;
-    border-right: 1px solid #ddd;
+    background: #25282c;
+	color: white;
     text-align: right;
     user-select: none;
     width: 50px;
@@ -42,6 +41,9 @@ body {
 .editor {
     flex: 1;
     padding: 10px;
+	background: #1d1f21;
+	color: white;
+	caret-color: white;
     border: none;
     outline: none;
     resize: none;
@@ -60,14 +62,16 @@ body {
 input[type="button"] {
     padding: 10px;
     margin: 5px;
-    border: 1px solid #ddd;
-    background-color: #f0f0f0;
+    border: 1px solid gray;
+    background-color: #1d1e23;
+	color: white;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 input[type="button"]:hover {
     background-color: #e0e0e0;
+	color: black;
 }
 
 .copytext {
@@ -76,9 +80,13 @@ input[type="button"]:hover {
 
 /* File chooser and download button */
 #choose {
-    margin: 10px 0;
+    margin: 10px 10px 10px 0;
 }
 
 #download {
-    margin-top: 10px;
+	margin: 10px 10px 0 0;
+}
+
+#copy {
+	margin: 10px 10px 0 0;
 }
