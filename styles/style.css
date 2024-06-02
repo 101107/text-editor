@@ -38,6 +38,10 @@ body {
 	font-size: 16px; /* Ensure font size matches the line numbers */
 }
 
+.line-numbers .highlighted {
+    background-color: #44475a;
+}
+
 .editor {
     flex: 1;
     padding: 10px;
